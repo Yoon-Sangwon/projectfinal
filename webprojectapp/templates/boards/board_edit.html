@@ -1,0 +1,60 @@
+{% extends 'boards/base.html' %}
+{% block content %}
+<!--middle bar start-->
+<section class="ftco-section contact-section ftco-no-pt ftco-animate">
+
+    <div class="container" id="board">
+        <div class="container d-flex justify-content-between">
+            <a href="" class="navbar-brand d-flex align-items-center">
+                <img src="/static/images/icon1.png" alt="#">
+                <strong>⠀ 수정하시겠어요?⠀ </strong>
+                <img src="/static/images/icon2.png" alt="#2">
+            </a>
+        </div>
+    </div>
+    <hr>
+    <!--middle bar end                    -->
+
+    <!--[edit view start]-->
+    <form method="POST" action="/update/{{ board.pk }}">
+        <!--CSRF 토큰을 이용해 CSRF 공격 방지-->
+        {% csrf_token %}
+
+        <div class="form-group row"
+             style="font-family: 'Nanum Gothic Coding', monospace; font-size: 13pt;">
+            <label for="inputpostname"
+                   class="col-sm-2 col-form-label"><strong>제 목</strong></label>
+            <div class="col-sm-10">
+                <input type="text" name="postname" cols="200" rows="10"
+                       class="form-control" id="editpostname" placeholder="제목을 입력해주세요"
+                       value="{{ board.postname }}">
+            </div>
+        </div>
+
+        <div class="form-group row"
+             style="font-family: 'Nanum Gothic Coding', monospace; font-size: 13pt;">
+            <label for="inputContents" class="col-sm-2 col-form-label"><strong>내 용</strong></label>
+            <div class="col-sm-10">
+                                            <textarea type="text" name="contents" cols="200" rows="10"
+                                                      class="form-control" id="inputContents"
+                                                      placeholder="의견을 입력해주세요.">{{ board.contents }}</textarea>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-auto mr-auto"></div>
+            <div class="col-auto">
+                <div class="container">
+                    <button class="btn btn-outline-danger" type="reset" value="Reset">되돌리기</button>
+                    <button class="btn btn-outline-danger" type="submit" value="Submit">수정</button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+</section>
+<!--[edit view end]-->
+
+{% endblock %}

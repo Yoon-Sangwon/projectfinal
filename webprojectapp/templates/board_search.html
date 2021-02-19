@@ -1,0 +1,61 @@
+{% extends 'boards/base.html' %}
+{% block content %}
+<!--[search view start]-->
+<h style="font-family: 'Nanum Gothic Coding', monospace; font-size: 13pt;">'{{q}}'</h>
+에 대한 검색결과입니다.
+
+<body>
+<table class="table">
+    <thead class="thead-light">
+    <tr class="text-center" style="font-family: 'Gothic A1', sans-serif; font-size: 15pt;">
+        <th scope="col">제목</th>
+        <th scope="col">작성자</th>
+        <th scope="col">작성일</th>
+        <th scope="col">조회수</th>
+        <th scope="col">추천수</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for board in boards %}
+    <tr class="text-center" style="font-family: 'Nanum Gothic Coding', monospace; font-size: 13pt;">
+        <td>
+            <a href="/board/{{board.pk}}">
+                <span>{{ board.postname }}</span>
+            </a>
+        </td>
+        <td>
+            <a href="/board/{{board.pk}}">
+                <span>{{ board.writer }}</span>
+            </a>
+        </td>
+        <td>
+            <a href="/board/{{board.pk}}">
+                <span>{{ board.created_date |date:"Y-m-d"}}</span>
+            </a>
+        </td>
+        <td>
+            <a href="/board/{{board.pk}}">
+                <span>{{ board.view_count }}</span>
+            </a>
+        </td>
+        <td>
+            <a href="{{ board.pk }}">
+                <span>{{ board.likes_user.all.count }}</span>
+            </a>
+        </td>
+    </tr>
+
+
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+
+<div class="row" align="right">
+    <div class="col-auto mr-auto"></div>
+    <div class="col-auto"></div>
+    <a class="btn btn-outline-danger" href="/board/" role="button">목록</a>
+</div>
+
+<!--[search view end]-->
+{% endblock %}

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:background-color="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Pen+Script&display=swap');
+         @import url('https://fonts.googleapis.com/css2?family=Single+Day&display=swap');
+         @import url('https://fonts.googleapis.com/css2?family=Jua&family=Single+Day&display=swap');
+         @import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@700&display=swap');
+         @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap');
+         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap');
+
+         #search{
+            display: inline;
+         }
+
+
+    </style>
+
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>식당리뷰</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="/static/css/style.css?after">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="/static/css/responsive.css">
+    <!-- fevicon -->
+    <link rel="icon" href="/static/images/fevicon.png" type="image/gif"/>
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+          media="screen">
+    <link rel="stylesheet" href="https://rawgit.com/LeshikJanz/libraries/master/Bootstrap/baguetteBox.min.css">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+<!-- body -->
+<body class="main-layout inner_page">
+<!-- loader start -->
+<div class="loader_bg">
+    <div class="loader"><img src="/static/images/loading.gif" alt="#"/></div>
+</div>
+<!-- loader end -->
+
+<!-- top -->
+<!-- header start -->
+<header class="header-area">
+    <div class="container">
+        <div class="row d_flex">
+            <div class="col-sm-3 logo_sm">
+                <div class="logo">
+                    <a href="index.html"></a>
+                </div>
+            </div>
+            <div class="col-lg-10 offset-lg-1 col-md-12 col-sm-9"
+                 style="font-size:20px; font-weight: 600; font-family: 'Black Han Sans', sans-serif;">
+                <div class="navbar-area">
+                    <nav class="site-navbar">
+                        <ul>
+                            <li><a href="/main"
+                                   style="font-size:20px; font-weight: 600; font-family: 'Black Han Sans', sans-serif;">Home</a>
+                            </li>
+                            <li><a href="/map1"
+                                   style="font-size:20px; font-weight: 600; font-family: 'Black Han Sans', sans-serif;">안심식당</a>
+                            </li>
+                            <li><a href="/map2"
+                                   style="font-size:20px; font-weight: 600; font-family: 'Black Han Sans', sans-serif;">안심병원
+                                & 진료소</a></li>
+                            <li><a class="active" href="/board"
+                                   style="font-size:20px; font-weight: 600; font-family: 'Black Han Sans', sans-serif;">식당리뷰</a>
+                            </li>
+                            {% if not request.user.is_authenticated %}
+                            <li><a href="../../register"
+                                   style="font-size:20px; font-weight: 600; font-family: 'Black Han Sans', sans-serif;">회원가입 </a>
+                            </li>
+                            <li><a href="../../login"
+                                   style="font-size:20px; font-weight: 600; font-family: 'Black Han Sans', sans-serif;">로그인 </a>
+                            </li>
+                            {% else %}
+                            <li><a href="../../logout"
+                                   style="font-size:20px; font-weight: 600; font-family: 'Black Han Sans', sans-serif;">로그아웃</a>
+                            </li>
+                            {% endif %}
+
+                        </ul>
+                        <button class="nav-toggler"></button>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- header end -->
+<div class="about">
+    <div class="container_width">
+        <div class="row d_flex">
+            <div class="col-md-7">
+                <div class="titlepage text_align_left">
+                    <h2>Review</h2><br><br><br>
+                </div>
+            </div>
+        </div>
+
+        <section class="ftco-section contact-section ftco-no-pt ftco-animate">
+            <div class="row d_flex">
+
+                <div class="container d-flex justify-content-between">
+                    <a href="" class="navbar-brand d-flex align-items-center">
+                        <img src="/static/images/icon1.png" alt="#">
+                        <strong>⠀ {{board.postname}}⠀ </strong>
+                        <img src="/static/images/icon2.png" alt="#2">
+                    </a>
+                    <div class="row">
+                        <div class="col-auto mr-auto"></div>
+                        <div class="col-auto">
+                            <img src="/static/images/case.png" alt="#3"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!--midle bar end-->
+
+            <hr>
+            <!--[view view start]-->
+
+            <p align="right"
+               style="margin-bottom: 0rem; font-family: 'Nanum Gothic Coding', monospace; ">
+                작성자 : {{board.writer}}</p>
+            <p align="right"
+               style="margin-bottom: 0rem; font-family: 'Nanum Gothic Coding', monospace;">작성일
+                : {{board.created_date|date:"Y-m-d"}}</p>
+            <p align="right"
+               style="margin-bottom: 0rem; font-family: 'Nanum Gothic Coding', monospace;">수정일
+                : {{board.modified_date|date:"Y-m-d"}}</p>
+
+            <div id="content_div"
+                 style="background-color: white; font-family: 'Nanum Gothic Coding', padding-right: 30px; padding-left: 30px;">
+                <h3>{{board.contents}}</h3><br>
+                <div class="row">
+                    <div class="col-auto mr-auto"></div>
+                    <div class="col-auto">
+                        <img src="/static/images/case.png" alt="#3"></div>
+                </div>
+            </div>
+            <hr>
+            <!--[button]-->
+            <div align="style">
+                <div class="row">
+                    <div class="col-auto mr-auto"></div>
+                    <div class="col-auto">
+                        <div class="container">
+                            <div align="center">
+                                <input type="button" class="btn-info btn-danger like"
+                                       name="{{ board.id }}"
+                                       value="Like [{{ board.likes_user.all.count }}개]"
+                                       style="margin-top: 7px"></div>
+
+                            <br>
+                            {% if user.is_anonymous %}
+                            <a class="btn btn-outline-danger" href="/board/" role="button">목록</a>
+                            {% else %}
+                            <a role="button" class="btn btn-outline-danger"
+                               href="/board/update/{{ board.pk }}">수정</a>
+                            <button role="button" class="btn btn-outline-danger"
+                                    onclick="dd_confirm('{{ board.writer }}', {{ board.pk }})">삭제
+                            </button>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--[view view end]-->
+    </div>
+</div>
+</div>
+</div>
+
+<!--  footer -->
+<footer>
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div align="center">
+
+                        <a href="https://github.com/SUJEONG999" target="_blank" style="padding: 15px"><img class="git"
+                                                                                                           src="/static/images/git.png"
+                                                                                                           style="width:40px;"></a>
+                        JSJ
+                        <a href="https://github.com/Yoon-Sangwon/" target="_blank" style="padding: 15px"><img
+                                class="git" src="/static/images/git.png" style="width:40px;"></a>
+                        YSW
+                        <a href="https://github.com/kdragonkorea" target="_blank" style="padding: 15px"><img class="git"
+                                                                                                             src="/static/images/git.png"
+                                                                                                             style="width:40px;"></a>
+                        KY
+                        <a href="https://github.com/haoingg" target="_blank" style="padding: 15px"><img class="git"
+                                                                                                        src="/static/images/git.png"
+                                                                                                        style="width:40px;"></a>
+                        KHY
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <p>© 2020 All Rights Reserved. Design by <a href="https://html.design/"> Free html Templates</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- end footer -->
+<!-- Javascript files-->
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+<script src="/static/js/owl.carousel.min.js"></script>
+<script src="/static/js/custom.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+<script src="/static/js/jquery.counterup.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+
+    $(".like").click(function () {
+        var pk = $(this).attr('name')
+        $.ajax({
+            type: "POST",
+            url: "{% url 'board_like' %}",
+            data: { 'pk': pk, 'csrfmiddlewaretoken': '{{ csrf_token }}' },
+            dataType: "json",
+
+            success: function (response) {
+                alert(response.message);
+                $("#count-" + pk).html("좋아요&nbsp;" + response.likes_count + "개");
+                location.href = "/board/" + pk;
+            },
+
+            error: function (request, status, error) {
+                alert("로그인이 필요합니다.")
+                  window.location.replace = '{%url "login" %}';
+            },
+        });
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+<script>
+function dd_confirm(writer, pk) {
+let result = confirm(writer+"님의 게시글을 삭제하겠습니까?");
+if( result )
+location.href = "/board/" + pk + "/remove/";
+}
+
+function processSearch() {
+location.href = '/projectapp/'+$('[name="searchtype"]').val()+'/'+$('[name="keyword"]').val();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
